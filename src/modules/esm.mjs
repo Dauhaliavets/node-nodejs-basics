@@ -3,9 +3,9 @@ import { release, version } from 'os';
 import { createServer as createServerHttp } from 'http';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'url';
+import('./files/c.js');
 
 const require = createRequire(import.meta.url);
-require('./files/c.js');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(fileURLToPath(import.meta.url));
