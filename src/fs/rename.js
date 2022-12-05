@@ -1,15 +1,15 @@
 import path from 'path';
-import { rename as renameFile, access, constants } from 'fs/promises';
+import { rename as renameFile } from 'fs/promises';
+import { isFileExist } from './isFileExist.js';
+import { errMsg, targetFolder } from './constants.js';
 
-const errMsg = 'FS operation failed';
+const rootPath = path.resolve();
 const srcFileName = 'wrongFilename.txt';
 const destFileName = 'properFilename.md';
-const targetFolder = 'src/fs/files';
-const root = path.resolve();
 
 const rename = async () => {
-  const pathToSrcFile = path.join(root, targetFolder, srcFileName);
-  const pathToDestFile = path.join(root, targetFolder, destFileName);
+  const pathToSrcFile = path.join(rootPath, targetFolder, srcFileName);
+  const pathToDestFile = path.join(rootPath, targetFolder, destFileName);
 
   const isExistSrcFile = await isFileExist(pathToSrcFile);
   const isExistDestFile = await isFileExist(pathToDestFile);
@@ -20,15 +20,6 @@ const rename = async () => {
   }
 
   console.error(errMsg);
-};
-
-const isFileExist = async (path) => {
-  try {
-    await access(path, constants.F_OK);
-    return true;
-  } catch {
-    return false;
-  }
 };
 
 await rename();

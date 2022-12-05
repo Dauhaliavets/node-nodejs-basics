@@ -1,20 +1,19 @@
 import path from 'path';
-import { access, mkdir, copyFile, readdir } from 'fs/promises';
+import { mkdir, copyFile, readdir } from 'fs/promises';
+import { errMsg, targetFolder } from './constants';
 
-const errMsg = 'FS operation failed';
-const srcFolder = 'src/fs/files';
 const destFolder = 'src/fs/files_copy';
 
 const copy = async () => {
   try {
-    const isExistSrcFolder = await isExistFolder(srcFolder);
+    const isExistSrcFolder = await isExistFolder(targetFolder);
     const isExistDestFolder = await isExistFolder(destFolder);
 
     if (isExistSrcFolder && !isExistDestFolder) {
       await mkdir(destFolder, { recursive: true });
-      const files = await readdir(srcFolder, { withFileTypes: true });
+      const files = await readdir(targetFolder, { withFileTypes: true });
       for (const { name } of files) {
-        copyFile(path.join(srcFolder, name), path.join(destFolder, name));
+        copyFile(path.join(targetFolder, name), path.join(destFolder, name));
       }
     } else {
       throw Error;
