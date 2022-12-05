@@ -1,5 +1,10 @@
+import { stdin, stdout } from 'process';
+
 const transform = async () => {
-    // Write your code here 
+  stdin.on('data', (chunk) => {
+    const reversedData = chunk.toString('utf-8').split('').reverse().join('');
+    stdout.write(reversedData);
+  });
 };
 
 await transform();
