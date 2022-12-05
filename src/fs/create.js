@@ -1,7 +1,7 @@
 import path from 'path';
 import { writeFile } from 'fs/promises';
-import { errMsg, targetFolder } from './constants';
-import { isFileExist } from './isFileExist';
+import { errMsg, targetFolder } from './constants.js';
+import { isFileExist } from './isFileExist.js';
 
 const content = 'I am fresh and young';
 const targetFileName = 'fresh.txt';

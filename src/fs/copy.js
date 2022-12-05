@@ -1,6 +1,6 @@
 import path from 'path';
 import { mkdir, copyFile, readdir, access } from 'fs/promises';
-import { errMsg, targetFolder } from './constants';
+import { errMsg, targetFolder } from './constants.js';
 
 const destFolder = 'src/fs/files_copy';
 
